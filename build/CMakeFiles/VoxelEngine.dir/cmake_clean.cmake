@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/VoxelEngine.dir/src/Application.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/Application.cpp.o.d"
+  "CMakeFiles/VoxelEngine.dir/src/Biomes.cpp.o"
+  "CMakeFiles/VoxelEngine.dir/src/Biomes.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o"
@@ -15,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o.d"
+  "CMakeFiles/VoxelEngine.dir/src/WorldGenerator.cpp.o"
+  "CMakeFiles/VoxelEngine.dir/src/WorldGenerator.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/glad.c.o"
   "CMakeFiles/VoxelEngine.dir/src/glad.c.o.d"
   "CMakeFiles/VoxelEngine.dir/src/main.cpp.o"

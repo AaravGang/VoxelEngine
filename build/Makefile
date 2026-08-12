@@ -153,6 +153,30 @@ src/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Application.cpp.s
 .PHONY : src/Application.cpp.s
 
+src/Biomes.o: src/Biomes.cpp.o
+.PHONY : src/Biomes.o
+
+# target to build an object file
+src/Biomes.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Biomes.cpp.o
+.PHONY : src/Biomes.cpp.o
+
+src/Biomes.i: src/Biomes.cpp.i
+.PHONY : src/Biomes.i
+
+# target to preprocess a source file
+src/Biomes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Biomes.cpp.i
+.PHONY : src/Biomes.cpp.i
+
+src/Biomes.s: src/Biomes.cpp.s
+.PHONY : src/Biomes.s
+
+# target to generate assembly for a file
+src/Biomes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Biomes.cpp.s
+.PHONY : src/Biomes.cpp.s
+
 src/Camera.o: src/Camera.cpp.o
 .PHONY : src/Camera.o
 
@@ -321,6 +345,30 @@ src/ThreadPool.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.s
 .PHONY : src/ThreadPool.cpp.s
 
+src/WorldGenerator.o: src/WorldGenerator.cpp.o
+.PHONY : src/WorldGenerator.o
+
+# target to build an object file
+src/WorldGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/WorldGenerator.cpp.o
+.PHONY : src/WorldGenerator.cpp.o
+
+src/WorldGenerator.i: src/WorldGenerator.cpp.i
+.PHONY : src/WorldGenerator.i
+
+# target to preprocess a source file
+src/WorldGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/WorldGenerator.cpp.i
+.PHONY : src/WorldGenerator.cpp.i
+
+src/WorldGenerator.s: src/WorldGenerator.cpp.s
+.PHONY : src/WorldGenerator.s
+
+# target to generate assembly for a file
+src/WorldGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/WorldGenerator.cpp.s
+.PHONY : src/WorldGenerator.cpp.s
+
 src/glad.o: src/glad.c.o
 .PHONY : src/glad.o
 
@@ -381,6 +429,9 @@ help:
 	@echo "... src/Application.o"
 	@echo "... src/Application.i"
 	@echo "... src/Application.s"
+	@echo "... src/Biomes.o"
+	@echo "... src/Biomes.i"
+	@echo "... src/Biomes.s"
 	@echo "... src/Camera.o"
 	@echo "... src/Camera.i"
 	@echo "... src/Camera.s"
@@ -402,6 +453,9 @@ help:
 	@echo "... src/ThreadPool.o"
 	@echo "... src/ThreadPool.i"
 	@echo "... src/ThreadPool.s"
+	@echo "... src/WorldGenerator.o"
+	@echo "... src/WorldGenerator.i"
+	@echo "... src/WorldGenerator.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"
