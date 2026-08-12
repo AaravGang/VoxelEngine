@@ -201,6 +201,30 @@ src/Chunk.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.s
 .PHONY : src/Chunk.cpp.s
 
+src/ChunkManager.o: src/ChunkManager.cpp.o
+.PHONY : src/ChunkManager.o
+
+# target to build an object file
+src/ChunkManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o
+.PHONY : src/ChunkManager.cpp.o
+
+src/ChunkManager.i: src/ChunkManager.cpp.i
+.PHONY : src/ChunkManager.i
+
+# target to preprocess a source file
+src/ChunkManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.i
+.PHONY : src/ChunkManager.cpp.i
+
+src/ChunkManager.s: src/ChunkManager.cpp.s
+.PHONY : src/ChunkManager.s
+
+# target to generate assembly for a file
+src/ChunkManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.s
+.PHONY : src/ChunkManager.cpp.s
+
 src/Mesh.o: src/Mesh.cpp.o
 .PHONY : src/Mesh.o
 
@@ -248,6 +272,54 @@ src/Shader.s: src/Shader.cpp.s
 src/Shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Shader.cpp.s
 .PHONY : src/Shader.cpp.s
+
+src/SimplexTerrainGenerator.o: src/SimplexTerrainGenerator.cpp.o
+.PHONY : src/SimplexTerrainGenerator.o
+
+# target to build an object file
+src/SimplexTerrainGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o
+.PHONY : src/SimplexTerrainGenerator.cpp.o
+
+src/SimplexTerrainGenerator.i: src/SimplexTerrainGenerator.cpp.i
+.PHONY : src/SimplexTerrainGenerator.i
+
+# target to preprocess a source file
+src/SimplexTerrainGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.i
+.PHONY : src/SimplexTerrainGenerator.cpp.i
+
+src/SimplexTerrainGenerator.s: src/SimplexTerrainGenerator.cpp.s
+.PHONY : src/SimplexTerrainGenerator.s
+
+# target to generate assembly for a file
+src/SimplexTerrainGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.s
+.PHONY : src/SimplexTerrainGenerator.cpp.s
+
+src/ThreadPool.o: src/ThreadPool.cpp.o
+.PHONY : src/ThreadPool.o
+
+# target to build an object file
+src/ThreadPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o
+.PHONY : src/ThreadPool.cpp.o
+
+src/ThreadPool.i: src/ThreadPool.cpp.i
+.PHONY : src/ThreadPool.i
+
+# target to preprocess a source file
+src/ThreadPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.i
+.PHONY : src/ThreadPool.cpp.i
+
+src/ThreadPool.s: src/ThreadPool.cpp.s
+.PHONY : src/ThreadPool.s
+
+# target to generate assembly for a file
+src/ThreadPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.s
+.PHONY : src/ThreadPool.cpp.s
 
 src/glad.o: src/glad.c.o
 .PHONY : src/glad.o
@@ -315,12 +387,21 @@ help:
 	@echo "... src/Chunk.o"
 	@echo "... src/Chunk.i"
 	@echo "... src/Chunk.s"
+	@echo "... src/ChunkManager.o"
+	@echo "... src/ChunkManager.i"
+	@echo "... src/ChunkManager.s"
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
 	@echo "... src/Shader.o"
 	@echo "... src/Shader.i"
 	@echo "... src/Shader.s"
+	@echo "... src/SimplexTerrainGenerator.o"
+	@echo "... src/SimplexTerrainGenerator.i"
+	@echo "... src/SimplexTerrainGenerator.s"
+	@echo "... src/ThreadPool.o"
+	@echo "... src/ThreadPool.i"
+	@echo "... src/ThreadPool.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"

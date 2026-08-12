@@ -114,10 +114,24 @@ CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aaravgang/Desktop/VoxelEngine/src/Chunk.cpp -o CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.s
 
+CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
+CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/ChunkManager.cpp
+CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/ChunkManager.cpp
+
+CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aaravgang/Desktop/VoxelEngine/src/ChunkManager.cpp > CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.i
+
+CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aaravgang/Desktop/VoxelEngine/src/ChunkManager.cpp -o CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.s
+
 CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
 CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/Mesh.cpp
 CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/Mesh.cpp
 
 CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.s: cmake_force
 CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
 CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/Shader.cpp
 CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/Shader.cpp
 
 CMakeFiles/VoxelEngine.dir/src/Shader.cpp.i: cmake_force
@@ -142,10 +156,38 @@ CMakeFiles/VoxelEngine.dir/src/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VoxelEngine.dir/src/Shader.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aaravgang/Desktop/VoxelEngine/src/Shader.cpp -o CMakeFiles/VoxelEngine.dir/src/Shader.cpp.s
 
+CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
+CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/SimplexTerrainGenerator.cpp
+CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/SimplexTerrainGenerator.cpp
+
+CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aaravgang/Desktop/VoxelEngine/src/SimplexTerrainGenerator.cpp > CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.i
+
+CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aaravgang/Desktop/VoxelEngine/src/SimplexTerrainGenerator.cpp -o CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.s
+
+CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
+CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/ThreadPool.cpp
+CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/ThreadPool.cpp
+
+CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aaravgang/Desktop/VoxelEngine/src/ThreadPool.cpp > CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.i
+
+CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aaravgang/Desktop/VoxelEngine/src/ThreadPool.cpp -o CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.s
+
 CMakeFiles/VoxelEngine.dir/src/glad.c.o: CMakeFiles/VoxelEngine.dir/flags.make
 CMakeFiles/VoxelEngine.dir/src/glad.c.o: /Users/aaravgang/Desktop/VoxelEngine/src/glad.c
 CMakeFiles/VoxelEngine.dir/src/glad.c.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/VoxelEngine.dir/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/VoxelEngine.dir/src/glad.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/glad.c.o -MF CMakeFiles/VoxelEngine.dir/src/glad.c.o.d -o CMakeFiles/VoxelEngine.dir/src/glad.c.o -c /Users/aaravgang/Desktop/VoxelEngine/src/glad.c
 
 CMakeFiles/VoxelEngine.dir/src/glad.c.i: cmake_force
@@ -159,7 +201,7 @@ CMakeFiles/VoxelEngine.dir/src/glad.c.s: cmake_force
 CMakeFiles/VoxelEngine.dir/src/main.cpp.o: CMakeFiles/VoxelEngine.dir/flags.make
 CMakeFiles/VoxelEngine.dir/src/main.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/src/main.cpp
 CMakeFiles/VoxelEngine.dir/src/main.cpp.o: CMakeFiles/VoxelEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VoxelEngine.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/VoxelEngine.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/VoxelEngine.dir/src/main.cpp.o -MF CMakeFiles/VoxelEngine.dir/src/main.cpp.o.d -o CMakeFiles/VoxelEngine.dir/src/main.cpp.o -c /Users/aaravgang/Desktop/VoxelEngine/src/main.cpp
 
 CMakeFiles/VoxelEngine.dir/src/main.cpp.i: cmake_force
@@ -175,8 +217,11 @@ VoxelEngine_OBJECTS = \
 "CMakeFiles/VoxelEngine.dir/src/Application.cpp.o" \
 "CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o" \
 "CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o" \
+"CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o" \
 "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o" \
 "CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o" \
+"CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o" \
+"CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o" \
 "CMakeFiles/VoxelEngine.dir/src/glad.c.o" \
 "CMakeFiles/VoxelEngine.dir/src/main.cpp.o"
 
@@ -186,14 +231,17 @@ VoxelEngine_EXTERNAL_OBJECTS =
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/Application.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o
+VoxelEngine: CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o
+VoxelEngine: CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o
+VoxelEngine: CMakeFiles/VoxelEngine.dir/src/ThreadPool.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/glad.c.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/src/main.cpp.o
 VoxelEngine: CMakeFiles/VoxelEngine.dir/build.make
 VoxelEngine: /usr/local/lib/libglfw.3.5.dylib
 VoxelEngine: CMakeFiles/VoxelEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable VoxelEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable VoxelEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VoxelEngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

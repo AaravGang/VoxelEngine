@@ -3,13 +3,13 @@
 
 # compile C with /usr/bin/cc
 # compile CXX with /usr/bin/c++
-C_DEFINES = 
+C_DEFINES = -DGL_SILENCE_DEPRECATION
 
 C_INCLUDES = -I/Users/aaravgang/Desktop/VoxelEngine/include
 
 C_FLAGS = 
 
-CXX_DEFINES = 
+CXX_DEFINES = -DGL_SILENCE_DEPRECATION
 
 CXX_INCLUDES = -I/Users/aaravgang/Desktop/VoxelEngine/include
 
