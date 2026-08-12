@@ -11,7 +11,9 @@ enum class BlockType : uint8_t {
     Sand = 5,
     Water = 6,
     ForestGrass = 7,
-    Mycelium = 8
+    Mycelium = 8,
+    Wood = 9,  
+    Leaves = 10 
 };
 
 inline glm::vec3 GetBlockColor(BlockType type) {
@@ -30,6 +32,10 @@ inline glm::vec3 GetBlockColor(BlockType type) {
         return glm::vec3(0.9f, 0.9f, 1.0f);
     case BlockType::Sand:
         return glm::vec3(0.8f, 0.8f, 0.4f);
+    case BlockType::Wood:
+        return glm::vec3(0.4f, 0.25f, 0.1f);
+    case BlockType::Leaves:
+        return glm::vec3(0.1f, 0.6f, 0.1f);
     default:
         return glm::vec3(1.0f, 1.0f, 1.0f);
     }

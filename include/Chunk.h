@@ -4,7 +4,7 @@
 
 class Chunk {
 public:
-    static const int CHUNK_SIZE = 32;
+    static const int CHUNK_SIZE = 64;
     std::array<uint8_t, CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE> blocks;
 
     // The chunk now directly owns its mesh
