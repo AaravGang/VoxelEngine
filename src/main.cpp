@@ -73,6 +73,7 @@ int main() {
     // Give the thread pool to the Chunk Manager
     ChunkManager chunkManager(threadPool);
 
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
