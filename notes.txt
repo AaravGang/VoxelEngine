@@ -1,2 +1,2 @@
-AVERAGE FPS = 310
-ZERO JITTER WHEN LOADING NEW CHUNKS
+AVERAGE FPS = still 310 (limited by gpu)
+but real difference is seen when we switch camera speed to 500, the chunks are calculated super fast and fps doesn't drop
