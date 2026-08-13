@@ -1,5 +1,6 @@
 #include "ChunkManager.h"
 #include "Frustum.h"
+#include <chrono>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
@@ -59,9 +60,27 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
                     // Create a new chunk in isolated memory
                     auto newChunk = std::make_shared<Chunk>();
 
+                    auto startCPUMath = std::chrono::high_resolution_clock::now();
+
                     // Run the heavy math
                     this->generator.Generate(*newChunk, x, z);
+
+                    auto endCPUMath = std::chrono::high_resolution_clock::now();
+                    auto durationCPUMath = std::chrono::duration_cast<std::chrono::microseconds>(
+                                               endCPUMath - startCPUMath)
+                                               .count();
+
+                    auto startCPUMesh = std::chrono::high_resolution_clock::now();
                     newChunk->GenerateMesh();
+
+                    auto endCPUMesh = std::chrono::high_resolution_clock::now();
+                    auto durationCPUMesh = std::chrono::duration_cast<std::chrono::microseconds>(
+                                               endCPUMesh - startCPUMesh)
+                                               .count();
+
+                    // Print the breakdown to the terminal
+                    std::cout << "[Engine A] CPU Math: " << durationCPUMath
+                              << " us | CPU Meshing: " << durationCPUMesh << " us\n";
 
                     // Safely pass the finished chunk back to the main thread queue
                     std::lock_guard<std::mutex> lock(this->handoffMutex);
@@ -128,5 +147,6 @@ void ChunkManager::Render(Shader& shader, const glm::mat4& viewProj) {
     }
 
     // Uncomment this to watch the optimization in real-time in your terminal!
-    // std::cout << "Frustum Culling: Rendering " << chunksDrawn << " / " << chunksTotal << "chunks\n";
+    // std::cout << "Frustum Culling: Rendering " << chunksDrawn << " / " << chunksTotal <<
+    // "chunks\n";
 }
