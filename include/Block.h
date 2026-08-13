@@ -4,18 +4,16 @@
 
 enum class BlockType : uint8_t {
     Air = 0,
-    Grass = 1,
-    Dirt = 2,
-    Stone = 3,
-    Snow = 4,
-    Sand = 5,
-    Water = 6,
-    ForestGrass = 7,
-    Mycelium = 8,
-    Wood = 9,  
-    Leaves = 10 
+    Grass,
+    Dirt,
+    Stone,
+    Sand,
+    ForestGrass,
+    Mycelium,
+    Snow,
+    Wood,
+    Leaves 
 };
-
 inline glm::vec3 GetBlockColor(BlockType type) {
     switch (type) {
     case BlockType::Grass:

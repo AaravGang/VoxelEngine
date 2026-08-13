@@ -1,5 +1,6 @@
 #pragma once
 #include "Chunk.h"
+#include "GPUCompute.h"
 #include "Shader.h"
 #include "ThreadPool.h"
 #include "WorldGenerator.h"
@@ -17,6 +18,7 @@ struct ChunkCoordinateHash {
 };
 
 class ChunkManager {
+    
 public:
     ChunkManager(ThreadPool& pool);
 
@@ -28,6 +30,7 @@ public:
 
 private:
     ThreadPool& threadPool;
+    GPUCompute gpuCompute;
     WorldGenerator generator;
 
     // Render distance (e.g., 4 chunks in every direction from the camera)

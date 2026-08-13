@@ -54,13 +54,21 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
                 // Mark as generating
                 generatingChunks[chunkCoord] = true;
 
-                // Dispatch to the background Thread Pool
-                threadPool.EnqueueTask([this, x, z]() {
+                // --- ENGINE B (GPU COMPUTE) ---
+                // 1. We are on the Main Thread. Tell the GPU to calculate the noise for this chunk!
+                // (Make sure gpuCompute is declared in your ChunkManager.h as a private member)
+                std::vector<float> gpuHeightMap = this->gpuCompute.GenerateHeightMap(x, z);
+
+                // 2. Dispatch to the background Thread Pool
+                // We pass gpuHeightMap BY VALUE into the lambda so the background thread owns it
+                threadPool.EnqueueTask([this, x, z, gpuHeightMap]() {
                     // Create a new chunk in isolated memory
                     auto newChunk = std::make_shared<Chunk>();
 
-                    // Run the heavy math
-                    this->generator.Generate(*newChunk, x, z);
+                    // 3. The background CPU thread uses the GPU's homework to place blocks
+                    this->generator.Generate(*newChunk, x, z, gpuHeightMap);
+
+                    // 4. Mesh the chunk
                     newChunk->GenerateMesh();
 
                     // Safely pass the finished chunk back to the main thread queue

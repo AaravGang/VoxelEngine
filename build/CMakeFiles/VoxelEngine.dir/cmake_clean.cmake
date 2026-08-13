@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.o.d"
+  "CMakeFiles/VoxelEngine.dir/src/GPUCompute.cpp.o"
+  "CMakeFiles/VoxelEngine.dir/src/GPUCompute.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/MemoryArena.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/MemoryArena.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o"

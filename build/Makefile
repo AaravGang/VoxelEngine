@@ -297,6 +297,30 @@ src/Frustum.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.s
 .PHONY : src/Frustum.cpp.s
 
+src/GPUCompute.o: src/GPUCompute.cpp.o
+.PHONY : src/GPUCompute.o
+
+# target to build an object file
+src/GPUCompute.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/GPUCompute.cpp.o
+.PHONY : src/GPUCompute.cpp.o
+
+src/GPUCompute.i: src/GPUCompute.cpp.i
+.PHONY : src/GPUCompute.i
+
+# target to preprocess a source file
+src/GPUCompute.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/GPUCompute.cpp.i
+.PHONY : src/GPUCompute.cpp.i
+
+src/GPUCompute.s: src/GPUCompute.cpp.s
+.PHONY : src/GPUCompute.s
+
+# target to generate assembly for a file
+src/GPUCompute.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/GPUCompute.cpp.s
+.PHONY : src/GPUCompute.cpp.s
+
 src/MemoryArena.o: src/MemoryArena.cpp.o
 .PHONY : src/MemoryArena.o
 
@@ -519,6 +543,9 @@ help:
 	@echo "... src/Frustum.o"
 	@echo "... src/Frustum.i"
 	@echo "... src/Frustum.s"
+	@echo "... src/GPUCompute.o"
+	@echo "... src/GPUCompute.i"
+	@echo "... src/GPUCompute.s"
 	@echo "... src/MemoryArena.o"
 	@echo "... src/MemoryArena.i"
 	@echo "... src/MemoryArena.s"
