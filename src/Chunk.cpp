@@ -1,5 +1,6 @@
 #include "Chunk.h"
 #include "Block.h"
+#include "MemoryArena.h"
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -20,26 +21,38 @@ void Chunk::SetBlock(int x, int y, int z, uint8_t type) {
 }
 
 void Chunk::GenerateMesh() {
-    mesh.vertices.clear();
+    // Claim memory from the Arena in O(1) time
+    mesh.buffer = GlobalMeshArena.Allocate();
 
-    // Add 'w' and 'h' parameters to the lambda
     auto addQuad
         = [&](glm::vec3 bottomLeft, glm::vec3 topLeft, glm::vec3 topRight, glm::vec3 bottomRight,
               glm::vec3 color, float shading, bool backFace, float w, float h) {
+              // Safety check: 6 vertices * 8 floats = 48
+              if (mesh.buffer->count + 48 > MAX_MESH_FLOATS)
+                  return;
+
               float r = color.r * shading;
               float g = color.g * shading;
               float b = color.b * shading;
 
-              // Push 8 floats: X, Y, Z, R, G, B, U, V
+              auto& data = mesh.buffer->data;
+              size_t& idx = mesh.buffer->count;
+
               auto pushVertex = [&](glm::vec3 pos, float u, float v) {
-                  mesh.vertices.insert(mesh.vertices.end(), { pos.x, pos.y, pos.z, r, g, b, u, v });
+                  data[idx++] = pos.x;
+                  data[idx++] = pos.y;
+                  data[idx++] = pos.z;
+                  data[idx++] = r;
+                  data[idx++] = g;
+                  data[idx++] = b;
+                  data[idx++] = u;
+                  data[idx++] = v;
               };
 
               if (backFace) {
                   pushVertex(bottomLeft, 0.0f, 0.0f);
                   pushVertex(bottomRight, w, 0.0f);
                   pushVertex(topRight, w, h);
-
                   pushVertex(bottomLeft, 0.0f, 0.0f);
                   pushVertex(topRight, w, h);
                   pushVertex(topLeft, 0.0f, h);
@@ -47,7 +60,6 @@ void Chunk::GenerateMesh() {
                   pushVertex(bottomLeft, 0.0f, 0.0f);
                   pushVertex(topLeft, 0.0f, h);
                   pushVertex(topRight, w, h);
-
                   pushVertex(bottomLeft, 0.0f, 0.0f);
                   pushVertex(topRight, w, h);
                   pushVertex(bottomRight, w, 0.0f);

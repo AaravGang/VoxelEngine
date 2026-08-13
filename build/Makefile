@@ -273,6 +273,30 @@ src/FPSCounter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.s
 .PHONY : src/FPSCounter.cpp.s
 
+src/MemoryArena.o: src/MemoryArena.cpp.o
+.PHONY : src/MemoryArena.o
+
+# target to build an object file
+src/MemoryArena.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/MemoryArena.cpp.o
+.PHONY : src/MemoryArena.cpp.o
+
+src/MemoryArena.i: src/MemoryArena.cpp.i
+.PHONY : src/MemoryArena.i
+
+# target to preprocess a source file
+src/MemoryArena.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/MemoryArena.cpp.i
+.PHONY : src/MemoryArena.cpp.i
+
+src/MemoryArena.s: src/MemoryArena.cpp.s
+.PHONY : src/MemoryArena.s
+
+# target to generate assembly for a file
+src/MemoryArena.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/MemoryArena.cpp.s
+.PHONY : src/MemoryArena.cpp.s
+
 src/Mesh.o: src/Mesh.cpp.o
 .PHONY : src/Mesh.o
 
@@ -468,6 +492,9 @@ help:
 	@echo "... src/FPSCounter.o"
 	@echo "... src/FPSCounter.i"
 	@echo "... src/FPSCounter.s"
+	@echo "... src/MemoryArena.o"
+	@echo "... src/MemoryArena.i"
+	@echo "... src/MemoryArena.s"
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"

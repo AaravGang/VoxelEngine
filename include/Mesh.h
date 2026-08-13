@@ -1,14 +1,15 @@
 #pragma once
+#include "MemoryArena.h"
 #include <glad/glad.h>
-#include <vector>
+#include <memory>
 
 class Mesh {
 public:
     unsigned int VAO, VBO;
     bool isUploaded;
-    
-    // We are back to the standard vector!
-    std::vector<float> vertices; 
+    size_t vertexCount;
+
+    std::unique_ptr<MeshBuffer> buffer;
 
     Mesh();
     ~Mesh();
