@@ -24,7 +24,7 @@ public:
     void Update(glm::vec3 cameraPosition);
 
     // Renders all active chunks
-    void Render(Shader& shader);
+    void Render(Shader& shader, const glm::mat4& viewProj);
 
 private:
     ThreadPool& threadPool;

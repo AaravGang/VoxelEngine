@@ -273,6 +273,30 @@ src/FPSCounter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.s
 .PHONY : src/FPSCounter.cpp.s
 
+src/Frustum.o: src/Frustum.cpp.o
+.PHONY : src/Frustum.o
+
+# target to build an object file
+src/Frustum.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.o
+.PHONY : src/Frustum.cpp.o
+
+src/Frustum.i: src/Frustum.cpp.i
+.PHONY : src/Frustum.i
+
+# target to preprocess a source file
+src/Frustum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.i
+.PHONY : src/Frustum.cpp.i
+
+src/Frustum.s: src/Frustum.cpp.s
+.PHONY : src/Frustum.s
+
+# target to generate assembly for a file
+src/Frustum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/Frustum.cpp.s
+.PHONY : src/Frustum.cpp.s
+
 src/MemoryArena.o: src/MemoryArena.cpp.o
 .PHONY : src/MemoryArena.o
 
@@ -492,6 +516,9 @@ help:
 	@echo "... src/FPSCounter.o"
 	@echo "... src/FPSCounter.i"
 	@echo "... src/FPSCounter.s"
+	@echo "... src/Frustum.o"
+	@echo "... src/Frustum.i"
+	@echo "... src/Frustum.s"
 	@echo "... src/MemoryArena.o"
 	@echo "... src/MemoryArena.i"
 	@echo "... src/MemoryArena.s"

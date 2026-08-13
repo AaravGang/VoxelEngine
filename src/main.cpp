@@ -99,13 +99,16 @@ int main() {
             = glm::perspective(glm::radians(45.0f), 1024.0f / 768.0f, 0.1f, 1000.0f);
         glm::mat4 view = camera.GetViewMatrix();
 
+        // Pre-multiply the matrices on the CPU so the ChunkManager can use it for culling
+        glm::mat4 viewProj = projection * view;
+
         unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
         unsigned int projLoc = glGetUniformLocation(ourShader.ID, "projection");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
         // Render the generated chunks
-        chunkManager.Render(ourShader);
+        chunkManager.Render(ourShader, viewProj);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

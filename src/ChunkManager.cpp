@@ -1,4 +1,5 @@
 #include "ChunkManager.h"
+#include "Frustum.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
@@ -21,7 +22,8 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
             finishedChunk->mesh.UploadToGPU();
 
             // ADD THIS DEBUG LINE:
-            // std::cout << "Uploaded Chunk at (" << coords.first << ", " << coords.second << ") with "
+            // std::cout << "Uploaded Chunk at (" << coords.first << ", " << coords.second << ")
+            // with "
             //           << finishedChunk->mesh.vertices.size() << " floats." << std::endl;
 
             // Move into active rendering pool and remove from generating tracker
@@ -86,21 +88,45 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
     }
 }
 
-void ChunkManager::Render(Shader& shader) {
-    // Iterate through all active chunks and draw them
-    for (auto& pair : activeChunks) {
-        int x = pair.first.first;
-        int z = pair.first.second;
+void ChunkManager::Render(Shader& shader, const glm::mat4& viewProj) {
+    // 1. Extract the frustum planes for this exact frame
+    Frustum frustum;
+    frustum.ExtractFromMatrix(viewProj);
 
-        // Calculate the physical world offset for this specific chunk
-        glm::mat4 model = glm::mat4(1.0f);
-        model
-            = glm::translate(model, glm::vec3(x * Chunk::CHUNK_SIZE, 0.0f, z * Chunk::CHUNK_SIZE));
+    int chunksTotal = 0;
+    int chunksDrawn = 0;
 
-        unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    // 2. Iterate through your chunks map/vector
+    // (Note: Adjust 'coord' or 'chunkX/Z' depending on how you structured your map key)
+    for (auto& [coord, chunk] : activeChunks) {
+        chunksTotal++;
 
-        // Draw the chunk's internal mesh
-        pair.second->mesh.Draw();
+        // Assuming your map key holds the world X and Z coordinates of the chunk
+        int chunkX = coord.first; // Change to coord.x if using glm::ivec2
+        int chunkZ = coord.second; // Change to coord.y if using glm::ivec2
+
+        glm::vec3 minBounds(chunkX * Chunk::CHUNK_SIZE, 0, chunkZ * Chunk::CHUNK_SIZE);
+        glm::vec3 maxBounds(chunkX * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE, Chunk::CHUNK_SIZE,
+                            chunkZ * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE);
+
+        if (frustum.IsBoxVisible(minBounds, maxBounds)) {
+
+            // 2. THE FIX: Translate the local 0-64 geometry to its actual world position!
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), minBounds);
+
+            unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+            // 3. Ensure the mesh is uploaded (from background threads)
+            if (!chunk->mesh.isUploaded) {
+                chunk->mesh.UploadToGPU();
+            }
+
+            chunk->mesh.Draw();
+            chunksDrawn++;
+        }
     }
+
+    // Uncomment this to watch the optimization in real-time in your terminal!
+    std::cout << "Frustum Culling: Rendering " << chunksDrawn << " / " << chunksTotal << "chunks\n";
 }
