@@ -1,6 +1,6 @@
 #include "WorldGenerator.h"
-#include "Chunk.h"
 #include "Block.h"
+#include "Chunk.h"
 #include "TerrainConfig.h"
 #include <algorithm>
 #include <cmath>
@@ -99,18 +99,23 @@ void WorldGenerator::Generate(Chunk& chunk, int chunkWorldX, int chunkWorldZ) {
     }
 
     // ==========================================
-    // PASS 2: TERRAIN PLACEMENT (Branching)
+    // PASS 2: TERRAIN PLACEMENT (Stride-1 Optimized)
     // ==========================================
+
+    // The loops MUST go Z, Y, X.
     for (int z = 0; z < Chunk::CHUNK_SIZE; ++z) {
-        for (int x = 0; x < Chunk::CHUNK_SIZE; ++x) {
+        for (int y = 0; y < Chunk::CHUNK_SIZE; ++y) {
 
-            // Read from our pre-calculated maps
-            int i = x + z * Chunk::CHUNK_SIZE;
-            int height = heightMap[i];
-            int activeBiome = activeBiomeMap[i];
-            float localSnowLine = snowLineMap[i];
+            // X is the innermost loop.
+            // chunk.SetBlock(x,y,z) increments the 1D array index by exactly 1.
+            // The hardware prefetcher will lock on and keep the L1 Cache burning hot!
+            for (int x = 0; x < Chunk::CHUNK_SIZE; ++x) {
 
-            for (int y = 0; y < Chunk::CHUNK_SIZE; ++y) {
+                int i = x + z * Chunk::CHUNK_SIZE;
+                int height = heightMap[i];
+                int activeBiome = activeBiomeMap[i];
+                float localSnowLine = snowLineMap[i];
+
                 if (y > height) {
                     chunk.SetBlock(x, y, z, static_cast<uint8_t>(BlockType::Air));
                 } else {
@@ -152,7 +157,6 @@ void WorldGenerator::Generate(Chunk& chunk, int chunkWorldX, int chunkWorldZ) {
             }
         }
     }
-
     // ==========================================
     // PASS 3: TREE GENERATION (Decorators)
     // ==========================================

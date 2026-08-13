@@ -9,7 +9,8 @@
 // 500,000 floats = ~2 MB per buffer.
 constexpr size_t MAX_MESH_FLOATS = 500000;
 
-struct MeshBuffer {
+// 2. Protect the background Arena allocations from False Sharing as well
+struct alignas(64) MeshBuffer {
     std::array<float, MAX_MESH_FLOATS> data;
     size_t count = 0;
 };

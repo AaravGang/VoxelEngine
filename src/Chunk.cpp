@@ -8,17 +8,6 @@ Chunk::Chunk() {
     blocks.fill(0);
 }
 
-uint8_t Chunk::GetBlock(int x, int y, int z) const {
-    if (x < 0 || x >= CHUNK_SIZE || y < 0 || y >= CHUNK_SIZE || z < 0 || z >= CHUNK_SIZE)
-        return 0;
-    return blocks[x + y * CHUNK_SIZE + z * CHUNK_SIZE * CHUNK_SIZE];
-}
-
-void Chunk::SetBlock(int x, int y, int z, uint8_t type) {
-    if (x >= 0 && x < CHUNK_SIZE && y >= 0 && y < CHUNK_SIZE && z >= 0 && z < CHUNK_SIZE) {
-        blocks[x + y * CHUNK_SIZE + z * CHUNK_SIZE * CHUNK_SIZE] = type;
-    }
-}
 
 void Chunk::GenerateMesh() {
     // Claim memory from the Arena in O(1) time
