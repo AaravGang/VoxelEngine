@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o.d"
+  "CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o"
+  "CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o"
   "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o.d"
   "CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o"

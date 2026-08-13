@@ -4734,6 +4734,7 @@ CMakeFiles/VoxelEngine.dir/src/main.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/
   /Users/aaravgang/Desktop/VoxelEngine/include/Camera.h \
   /Users/aaravgang/Desktop/VoxelEngine/include/Chunk.h \
   /Users/aaravgang/Desktop/VoxelEngine/include/ChunkManager.h \
+  /Users/aaravgang/Desktop/VoxelEngine/include/FPSCounter.h \
   /Users/aaravgang/Desktop/VoxelEngine/include/FastNoiseLite.h \
   /Users/aaravgang/Desktop/VoxelEngine/include/ITerrainGenerator.h \
   /Users/aaravgang/Desktop/VoxelEngine/include/KHR/khrplatform.h \
@@ -4996,6 +4997,8 @@ CMakeFiles/VoxelEngine.dir/src/main.cpp.o: /Users/aaravgang/Desktop/VoxelEngine/
 
 
 /usr/local/include/GLFW/glfw3.h:
+
+/Users/aaravgang/Desktop/VoxelEngine/include/FPSCounter.h:
 
 /Users/aaravgang/Desktop/VoxelEngine/src/main.cpp:
 

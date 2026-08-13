@@ -249,6 +249,30 @@ src/ChunkManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.s
 .PHONY : src/ChunkManager.cpp.s
 
+src/FPSCounter.o: src/FPSCounter.cpp.o
+.PHONY : src/FPSCounter.o
+
+# target to build an object file
+src/FPSCounter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o
+.PHONY : src/FPSCounter.cpp.o
+
+src/FPSCounter.i: src/FPSCounter.cpp.i
+.PHONY : src/FPSCounter.i
+
+# target to preprocess a source file
+src/FPSCounter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.i
+.PHONY : src/FPSCounter.cpp.i
+
+src/FPSCounter.s: src/FPSCounter.cpp.s
+.PHONY : src/FPSCounter.s
+
+# target to generate assembly for a file
+src/FPSCounter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VoxelEngine.dir/build.make CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.s
+.PHONY : src/FPSCounter.cpp.s
+
 src/Mesh.o: src/Mesh.cpp.o
 .PHONY : src/Mesh.o
 
@@ -441,6 +465,9 @@ help:
 	@echo "... src/ChunkManager.o"
 	@echo "... src/ChunkManager.i"
 	@echo "... src/ChunkManager.s"
+	@echo "... src/FPSCounter.o"
+	@echo "... src/FPSCounter.i"
+	@echo "... src/FPSCounter.s"
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"

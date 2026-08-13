@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/aaravgang/Desktop/VoxelEngine/src/Camera.cpp" "CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/Camera.cpp.o.d"
   "/Users/aaravgang/Desktop/VoxelEngine/src/Chunk.cpp" "CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/Chunk.cpp.o.d"
   "/Users/aaravgang/Desktop/VoxelEngine/src/ChunkManager.cpp" "CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/ChunkManager.cpp.o.d"
+  "/Users/aaravgang/Desktop/VoxelEngine/src/FPSCounter.cpp" "CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/FPSCounter.cpp.o.d"
   "/Users/aaravgang/Desktop/VoxelEngine/src/Mesh.cpp" "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/Mesh.cpp.o.d"
   "/Users/aaravgang/Desktop/VoxelEngine/src/Shader.cpp" "CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/Shader.cpp.o.d"
   "/Users/aaravgang/Desktop/VoxelEngine/src/SimplexTerrainGenerator.cpp" "CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o" "gcc" "CMakeFiles/VoxelEngine.dir/src/SimplexTerrainGenerator.cpp.o.d"

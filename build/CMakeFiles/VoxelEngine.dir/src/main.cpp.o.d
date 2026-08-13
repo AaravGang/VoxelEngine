@@ -619,6 +619,7 @@ CMakeFiles/VoxelEngine.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
+  /Users/aaravgang/Desktop/VoxelEngine/include/FPSCounter.h \
   /usr/local/include/GLFW/glfw3.h \
   /usr/local/include/glm/gtc/type_ptr.hpp \
   /usr/local/include/glm/gtc/../gtc/quaternion.hpp \
