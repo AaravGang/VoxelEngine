@@ -38,6 +38,38 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
 void processInput(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+
+    // ==========================================
+    // 1. THE HARDWARE SPEED SLIDER (Arrow Keys)
+    // ==========================================
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        // Smoothly increase base speed
+        camera.MovementSpeed += 50.0f * deltaTime;
+        std::cout << "Camera Base Speed: " << camera.MovementSpeed << " units/sec    \r"
+                  << std::flush;
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        // Smoothly decrease base speed
+        camera.MovementSpeed -= 50.0f * deltaTime;
+        // Clamp to prevent negative speed (flying backward)
+        if (camera.MovementSpeed < 1.0f)
+            camera.MovementSpeed = 1.0f;
+        std::cout << "Camera Base Speed: " << camera.MovementSpeed << " units/sec    \r"
+                  << std::flush;
+    }
+
+    // ==========================================
+    // 2. THE WARP DRIVE (Left Shift)
+    // ==========================================
+    float originalSpeed = camera.MovementSpeed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+        // Multiply speed by 5 while holding shift
+        camera.MovementSpeed *= 5.0f;
+    }
+
+    // ==========================================
+    // 3. STANDARD MOVEMENT
+    // ==========================================
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -46,7 +78,11 @@ void processInput(GLFWwindow* window) {
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
+    // Restore the base speed so we don't permanently alter it if shift was held
+    camera.MovementSpeed = originalSpeed;
 }
+
 
 int main() {
     glfwInit();
