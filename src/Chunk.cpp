@@ -22,63 +22,69 @@ void Chunk::SetBlock(int x, int y, int z, uint8_t type) {
 void Chunk::GenerateMesh() {
     mesh.vertices.clear();
 
-    // Helper lambda to push 6 vertices for a generated quad
-    auto addQuad = [&](glm::vec3 bottomLeft, glm::vec3 topLeft, glm::vec3 topRight,
-                       glm::vec3 bottomRight, glm::vec3 color, float shading) {
-        float r = color.r * shading;
-        float g = color.g * shading;
-        float b = color.b * shading;
+    // Add 'w' and 'h' parameters to the lambda
+    auto addQuad
+        = [&](glm::vec3 bottomLeft, glm::vec3 topLeft, glm::vec3 topRight, glm::vec3 bottomRight,
+              glm::vec3 color, float shading, bool backFace, float w, float h) {
+              float r = color.r * shading;
+              float g = color.g * shading;
+              float b = color.b * shading;
 
-        // Triangle 1
-        mesh.vertices.insert(mesh.vertices.end(),
-                             { bottomLeft.x, bottomLeft.y, bottomLeft.z, r, g, b });
-        mesh.vertices.insert(mesh.vertices.end(), { topRight.x, topRight.y, topRight.z, r, g, b });
-        mesh.vertices.insert(mesh.vertices.end(), { topLeft.x, topLeft.y, topLeft.z, r, g, b });
+              // Push 8 floats: X, Y, Z, R, G, B, U, V
+              auto pushVertex = [&](glm::vec3 pos, float u, float v) {
+                  mesh.vertices.insert(mesh.vertices.end(), { pos.x, pos.y, pos.z, r, g, b, u, v });
+              };
 
-        // Triangle 2
-        mesh.vertices.insert(mesh.vertices.end(),
-                             { bottomLeft.x, bottomLeft.y, bottomLeft.z, r, g, b });
-        mesh.vertices.insert(mesh.vertices.end(),
-                             { bottomRight.x, bottomRight.y, bottomRight.z, r, g, b });
-        mesh.vertices.insert(mesh.vertices.end(), { topRight.x, topRight.y, topRight.z, r, g, b });
-    };
+              if (backFace) {
+                  pushVertex(bottomLeft, 0.0f, 0.0f);
+                  pushVertex(bottomRight, w, 0.0f);
+                  pushVertex(topRight, w, h);
 
-    // Sweep over all 3 axes (0=X, 1=Y, 2=Z)
+                  pushVertex(bottomLeft, 0.0f, 0.0f);
+                  pushVertex(topRight, w, h);
+                  pushVertex(topLeft, 0.0f, h);
+              } else {
+                  pushVertex(bottomLeft, 0.0f, 0.0f);
+                  pushVertex(topLeft, 0.0f, h);
+                  pushVertex(topRight, w, h);
+
+                  pushVertex(bottomLeft, 0.0f, 0.0f);
+                  pushVertex(topRight, w, h);
+                  pushVertex(bottomRight, w, 0.0f);
+              }
+          };
+
     for (int axis = 0; axis < 3; ++axis) {
-        int u = (axis + 1) % 3; // The horizontal axis of our 2D slice
-        int v = (axis + 2) % 3; // The vertical axis of our 2D slice
-
+        int u = (axis + 1) % 3;
+        int v = (axis + 2) % 3;
         int x[3] = { 0, 0, 0 };
         int q[3] = { 0, 0, 0 };
-        q[axis] = 1; // Direction vector for checking adjacency
+        q[axis] = 1;
 
-        // A 2D mask tracking visible faces and their block types
         std::vector<uint8_t> mask(CHUNK_SIZE * CHUNK_SIZE);
 
-        // Check both directions (positive and negative faces)
-        for (bool backFace = false; backFace != true; backFace = !backFace) {
+        // 0 = Forward Facing (+), 1 = Backward Facing (-)
+        for (int dir = 0; dir < 2; ++dir) {
+            bool backFace = (dir == 1);
 
-            // Iterate through the slices of the chunk
             for (x[axis] = -1; x[axis] < CHUNK_SIZE;) {
 
-                // 1. BUILD THE MASK
+                // 1. BUILD THE MASK (With flawless face culling)
                 int n = 0;
                 for (x[v] = 0; x[v] < CHUNK_SIZE; ++x[v]) {
                     for (x[u] = 0; x[u] < CHUNK_SIZE; ++x[u]) {
-                        // Check the block on the current slice and the adjacent slice
                         uint8_t blockCurrent = (x[axis] >= 0) ? GetBlock(x[0], x[1], x[2]) : 0;
                         uint8_t blockNext = (x[axis] < CHUNK_SIZE - 1)
                             ? GetBlock(x[0] + q[0], x[1] + q[1], x[2] + q[2])
                             : 0;
 
-                        // If one is solid and the other is air, a face is visible
-                        bool visible = (blockCurrent != 0) != (blockNext != 0);
-
-                        if (visible) {
-                            // Store the block type that is generating the face
-                            mask[n++] = backFace ? blockNext : blockCurrent;
+                        bool visible = false;
+                        if (backFace) {
+                            visible = (blockNext != 0 && blockCurrent == 0);
+                            mask[n++] = visible ? blockNext : 0;
                         } else {
-                            mask[n++] = 0;
+                            visible = (blockCurrent != 0 && blockNext == 0);
+                            mask[n++] = visible ? blockCurrent : 0;
                         }
                     }
                 }
@@ -86,19 +92,17 @@ void Chunk::GenerateMesh() {
                 ++x[axis];
                 n = 0;
 
-                // 2. GREEDY SWEEP ACROSS THE MASK
+                // 2. GREEDY EXPANSION
                 for (int j = 0; j < CHUNK_SIZE; ++j) {
                     for (int i = 0; i < CHUNK_SIZE;) {
                         uint8_t currentType = mask[n];
                         if (currentType != 0) {
                             int width, height;
 
-                            // Greedily expand the width (u)
                             for (width = 1;
                                  i + width < CHUNK_SIZE && mask[n + width] == currentType;
                                  ++width) { }
 
-                            // Greedily expand the height (v)
                             bool done = false;
                             for (height = 1; j + height < CHUNK_SIZE; ++height) {
                                 for (int k = 0; k < width; ++k) {
@@ -111,14 +115,13 @@ void Chunk::GenerateMesh() {
                                     break;
                             }
 
-                            // Erase the merged quad from the mask so we don't draw it again
                             for (int l = 0; l < height; ++l) {
                                 for (int k = 0; k < width; ++k) {
                                     mask[n + k + l * CHUNK_SIZE] = 0;
                                 }
                             }
 
-                            // 3. GENERATE THE VERTICES
+                            // 3. GENERATE VERTICES
                             x[u] = i;
                             x[v] = j;
 
@@ -134,28 +137,21 @@ void Chunk::GenerateMesh() {
                             glm::vec3 topRight = glm::vec3(
                                 x[0] + du[0] + dv[0], x[1] + du[1] + dv[1], x[2] + du[2] + dv[2]);
 
-                            // Retrieve color based on the unified block type
                             glm::vec3 baseColor
                                 = GetBlockColor(static_cast<BlockType>(currentType));
 
-                            // Apply directional shading based on the axis to restore depth
                             float shading = 1.0f;
                             if (axis == 0)
-                                shading = 0.85f; // X sides
+                                shading = 0.85f;
                             if (axis == 1)
-                                shading = backFace ? 0.4f : 1.0f; // Y top (1.0) and bottom (0.4)
+                                shading = backFace ? 0.4f : 1.0f;
                             if (axis == 2)
-                                shading = 0.7f; // Z sides
+                                shading = 0.7f;
 
-                            // Ensure correct winding order so faces aren't culled incorrectly by
-                            // OpenGL
-                            if (backFace) {
-                                addQuad(bottomLeft, bottomRight, topRight, topLeft, baseColor,
-                                        shading);
-                            } else {
-                                addQuad(bottomLeft, topLeft, topRight, bottomRight, baseColor,
-                                        shading);
-                            }
+                            // Pass (float)width and (float)height at the very end of the arguments!
+                            addQuad(bottomLeft, topLeft, topRight, bottomRight, baseColor, shading,
+                                    backFace, static_cast<float>(width),
+                                    static_cast<float>(height));
 
                             i += width;
                             n += width;
@@ -166,8 +162,6 @@ void Chunk::GenerateMesh() {
                     }
                 }
             }
-            if (backFace)
-                break; // Break out after checking the negative direction
         }
     }
 }

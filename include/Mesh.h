@@ -4,9 +4,11 @@
 
 class Mesh {
 public:
-    std::vector<float> vertices;
     unsigned int VAO, VBO;
-    bool isUploaded; // Tracks if the GPU buffers exist
+    bool isUploaded;
+    
+    // We are back to the standard vector!
+    std::vector<float> vertices; 
 
     Mesh();
     ~Mesh();
