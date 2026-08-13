@@ -1,6 +1,7 @@
 #define GL_SILENCE_DEPRECATION
 #include "Camera.h"
 #include "ChunkManager.h"
+#include "FPSCounter.h"
 #include "Shader.h"
 #include "ThreadPool.h"
 #include <GLFW/glfw3.h>
@@ -73,8 +74,10 @@ int main() {
     // Give the thread pool to the Chunk Manager
     ChunkManager chunkManager(threadPool);
 
+    FPSCounter fps;
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (!glfwWindowShouldClose(window)) {
+        fps.Update(window);
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
