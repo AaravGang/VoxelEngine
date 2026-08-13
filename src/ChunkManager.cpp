@@ -1,5 +1,6 @@
 #include "ChunkManager.h"
 #include "Frustum.h"
+#include <chrono>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
@@ -54,14 +55,24 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
                 // Mark as generating
                 generatingChunks[chunkCoord] = true;
 
+                auto startGPU = std::chrono::high_resolution_clock::now();
+
                 // --- ENGINE B (GPU COMPUTE) ---
                 // 1. We are on the Main Thread. Tell the GPU to calculate the noise for this chunk!
                 // (Make sure gpuCompute is declared in your ChunkManager.h as a private member)
                 std::vector<float> gpuHeightMap = this->gpuCompute.GenerateHeightMap(x, z);
 
+                auto endGPU = std::chrono::high_resolution_clock::now();
+                auto durationGPU
+                    = std::chrono::duration_cast<std::chrono::microseconds>(endGPU - startGPU)
+                          .count();
+                std::cout << "[Engine B] GPU Math Generation: " << durationGPU << " microseconds\n";
                 // 2. Dispatch to the background Thread Pool
                 // We pass gpuHeightMap BY VALUE into the lambda so the background thread owns it
                 threadPool.EnqueueTask([this, x, z, gpuHeightMap]() {
+                    // --- 3. START CPU PROFILER ---
+                    auto startCPU = std::chrono::high_resolution_clock::now();
+
                     // Create a new chunk in isolated memory
                     auto newChunk = std::make_shared<Chunk>();
 
@@ -70,6 +81,16 @@ void ChunkManager::Update(glm::vec3 cameraPosition) {
 
                     // 4. Mesh the chunk
                     newChunk->GenerateMesh();
+
+                    auto endCPU = std::chrono::high_resolution_clock::now();
+                    auto durationCPU
+                        = std::chrono::duration_cast<std::chrono::microseconds>(endCPU - startCPU)
+                              .count();
+
+                    // Print the CPU time to the terminal
+                    std::cout << "[Engine A] CPU Structuring & Meshing: " << durationCPU
+                              << " microseconds\n";
+                    // -----------------------------
 
                     // Safely pass the finished chunk back to the main thread queue
                     std::lock_guard<std::mutex> lock(this->handoffMutex);
