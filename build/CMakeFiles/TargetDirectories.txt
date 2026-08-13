@@ -1,3 +1,0 @@
-/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles/VoxelEngine.dir
-/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles/edit_cache.dir
-/Users/aaravgang/Desktop/VoxelEngine/build/CMakeFiles/rebuild_cache.dir
