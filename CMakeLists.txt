@@ -14,6 +14,8 @@ find_package(OpenGL REQUIRED)
 
 file(GLOB SOURCES "src/*.cpp" "src/glad.c")
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -ffast-math")
+
 add_executable(VoxelEngine ${SOURCES})
 
 target_link_libraries(VoxelEngine glfw "-framework OpenGL")

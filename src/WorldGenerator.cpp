@@ -57,38 +57,58 @@ void WorldGenerator::Generate(Chunk& chunk, int chunkWorldX, int chunkWorldZ) {
             + TerrainConfig::MountainBaseHeight;
     };
 
+    // Allocate flat arrays for our 2D data maps.
+    // By keeping this 1D and purely mathematical, the compiler will use SIMD instructions to
+    // calculate 8 blocks at once!
+    constexpr int AREA = Chunk::CHUNK_SIZE * Chunk::CHUNK_SIZE;
+    std::vector<int> heightMap(AREA);
+    std::vector<int> activeBiomeMap(AREA);
+    std::vector<float> snowLineMap(AREA);
+
     // ==========================================
-    // PASS 1: TERRAIN GENERATION
+    // PASS 1: THE SIMD MATH PIPELINE
+    // ==========================================
+    for (int i = 0; i < AREA; ++i) {
+        int x = i % Chunk::CHUNK_SIZE;
+        int z = i / Chunk::CHUNK_SIZE;
+
+        float worldX = static_cast<float>(chunkWorldX * Chunk::CHUNK_SIZE + x);
+        float worldZ = static_cast<float>(chunkWorldZ * Chunk::CHUNK_SIZE + z);
+
+        float climate = biomeNoise.GetNoise(worldX, worldZ);
+        climate = std::clamp(climate, -0.999f, 0.999f);
+
+        float biomeMap = (climate + 1.0f) * 2.0f;
+        int biomeA = static_cast<int>(biomeMap);
+        int biomeB = biomeA + 1;
+
+        float blend = biomeMap - static_cast<float>(biomeA);
+        blend = blend * blend * (3.0f - 2.0f * blend);
+
+        float heightA = getBiomeHeight(biomeA, worldX, worldZ);
+        float heightB = getBiomeHeight(biomeB, worldX, worldZ);
+
+        // Write the calculated math into our flat maps
+        heightMap[i] = static_cast<int>(heightA + blend * (heightB - heightA));
+        activeBiomeMap[i] = (blend < 0.5f) ? biomeA : biomeB;
+
+        float snowVarianceNoise
+            = (plainsNoise.GetNoise(worldX * 2.0f, worldZ * 2.0f) + 1.0f) * 0.5f;
+        snowLineMap[i] = TerrainConfig::SnowLineBase
+            + ((snowVarianceNoise - 0.5f) * 2.0f * TerrainConfig::SnowLineVariance);
+    }
+
+    // ==========================================
+    // PASS 2: TERRAIN PLACEMENT (Branching)
     // ==========================================
     for (int z = 0; z < Chunk::CHUNK_SIZE; ++z) {
         for (int x = 0; x < Chunk::CHUNK_SIZE; ++x) {
 
-            float worldX = static_cast<float>(chunkWorldX * Chunk::CHUNK_SIZE + x);
-            float worldZ = static_cast<float>(chunkWorldZ * Chunk::CHUNK_SIZE + z);
-
-            float climate = biomeNoise.GetNoise(worldX, worldZ);
-            climate = std::clamp(climate, -0.999f, 0.999f);
-
-            float biomeMap = (climate + 1.0f) * 2.0f;
-            int biomeA = static_cast<int>(biomeMap);
-            int biomeB = biomeA + 1;
-
-            float blend = biomeMap - static_cast<float>(biomeA);
-            blend = blend * blend * (3.0f - 2.0f * blend);
-
-            float heightA = getBiomeHeight(biomeA, worldX, worldZ);
-            float heightB = getBiomeHeight(biomeB, worldX, worldZ);
-            int height = static_cast<int>(heightA + blend * (heightB - heightA));
-
-            int activeBiome = (blend < 0.5f) ? biomeA : biomeB;
-
-            // BREAKING FEATURE CORRELATION:
-            // We use plainsNoise (which is otherwise unused here) to perturb the snow line
-            // organically.
-            float snowVarianceNoise
-                = (plainsNoise.GetNoise(worldX * 2.0f, worldZ * 2.0f) + 1.0f) * 0.5f;
-            float localSnowLine = TerrainConfig::SnowLineBase
-                + ((snowVarianceNoise - 0.5f) * 2.0f * TerrainConfig::SnowLineVariance);
+            // Read from our pre-calculated maps
+            int i = x + z * Chunk::CHUNK_SIZE;
+            int height = heightMap[i];
+            int activeBiome = activeBiomeMap[i];
+            float localSnowLine = snowLineMap[i];
 
             for (int y = 0; y < Chunk::CHUNK_SIZE; ++y) {
                 if (y > height) {
@@ -134,29 +154,20 @@ void WorldGenerator::Generate(Chunk& chunk, int chunkWorldX, int chunkWorldZ) {
     }
 
     // ==========================================
-    // PASS 2: TREE GENERATION (Decorators)
+    // PASS 3: TREE GENERATION (Decorators)
     // ==========================================
     for (int z = 2; z < Chunk::CHUNK_SIZE - 2; ++z) {
         for (int x = 2; x < Chunk::CHUNK_SIZE - 2; ++x) {
 
-            float worldX = static_cast<float>(chunkWorldX * Chunk::CHUNK_SIZE + x);
-            float worldZ = static_cast<float>(chunkWorldZ * Chunk::CHUNK_SIZE + z);
-
-            float climate = biomeNoise.GetNoise(worldX, worldZ);
-            climate = std::clamp(climate, -0.999f, 0.999f);
-            float biomeMap = (climate + 1.0f) * 2.0f;
-            int biomeA = static_cast<int>(biomeMap);
-            int biomeB = biomeA + 1;
-            float blend = biomeMap - static_cast<float>(biomeA);
-            blend = blend * blend * (3.0f - 2.0f * blend);
-            int activeBiome = (blend < 0.5f) ? biomeA : biomeB;
+            int i = x + z * Chunk::CHUNK_SIZE;
+            int activeBiome = activeBiomeMap[i]; // Reuse the biome map! No recalculating math!
 
             if (activeBiome == 2) {
+                float worldX = static_cast<float>(chunkWorldX * Chunk::CHUNK_SIZE + x);
+                float worldZ = static_cast<float>(chunkWorldZ * Chunk::CHUNK_SIZE + z);
                 uint32_t hash = getHash(static_cast<int>(worldX), static_cast<int>(worldZ));
 
                 if (hash % 100 < 3) {
-
-                    // PREVENTING STATE MUTATION: Check exactly what block the raycast hits
                     int surfaceY = 0;
                     uint8_t surfaceBlock = static_cast<uint8_t>(BlockType::Air);
 
@@ -169,14 +180,12 @@ void WorldGenerator::Generate(Chunk& chunk, int chunkWorldX, int chunkWorldZ) {
                         }
                     }
 
-                    // Only build if the tree is planted on solid ForestGrass or Dirt (ignores
-                    // Leaves/Wood)
                     if (surfaceY > 0 && surfaceY < Chunk::CHUNK_SIZE - 10
                         && (surfaceBlock == static_cast<uint8_t>(BlockType::ForestGrass)
                             || surfaceBlock == static_cast<uint8_t>(BlockType::Dirt))) {
 
-                        for (int i = 1; i <= 4; ++i) {
-                            chunk.SetBlock(x, surfaceY + i, z,
+                        for (int trunk = 1; trunk <= 4; ++trunk) {
+                            chunk.SetBlock(x, surfaceY + trunk, z,
                                            static_cast<uint8_t>(BlockType::Wood));
                         }
 

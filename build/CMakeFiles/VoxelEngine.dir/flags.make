@@ -13,5 +13,5 @@ CXX_DEFINES = -DGL_SILENCE_DEPRECATION
 
 CXX_INCLUDES = -I/Users/aaravgang/Desktop/VoxelEngine/include
 
-CXX_FLAGS = -std=gnu++20
+CXX_FLAGS =  -O3 -march=native -ffast-math -std=gnu++20
 
