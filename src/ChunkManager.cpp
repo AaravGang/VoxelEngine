@@ -128,5 +128,5 @@ void ChunkManager::Render(Shader& shader, const glm::mat4& viewProj) {
     }
 
     // Uncomment this to watch the optimization in real-time in your terminal!
-    std::cout << "Frustum Culling: Rendering " << chunksDrawn << " / " << chunksTotal << "chunks\n";
+    // std::cout << "Frustum Culling: Rendering " << chunksDrawn << " / " << chunksTotal << "chunks\n";
 }
