@@ -59,6 +59,8 @@ int main() {
 
     GLFWwindow* window = glfwCreateWindow(1024, 768, "Infinite Engine", NULL, NULL);
     glfwMakeContextCurrent(window);
+    // 0 disables VSync, 1 enables it.
+    glfwSwapInterval(0);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetCursorPosCallback(window, mouse_callback);
