@@ -84,11 +84,13 @@ Built as a counter-architecture to completely bypass CPU lane limits.
 
 ### **Compiling**
 
-```Bash  
+Bash
+```  
 mkdir build  
 cd build  
 cmake ..  
-make```
+make
+```
 
 ### **Execution**
 
