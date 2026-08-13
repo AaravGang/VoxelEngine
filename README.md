@@ -94,8 +94,9 @@ make
 
 ### **Execution**
 
-Bash  
-``` ./VoxelEngine
+Bash
+```  
+./VoxelEngine
 ```
 
 *Hold LEFT SHIFT to increase camera speed and observe the multithreaded chunk generation in real-time.*
